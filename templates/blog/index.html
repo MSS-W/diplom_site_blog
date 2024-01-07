@@ -1,0 +1,43 @@
+{% extends "blog/base.html" %}
+{% block title %}Сайт-Блог{% endblock %}
+
+{% block content %}
+    <section class="al mt-3">
+    </section>
+
+    <section class="categories">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-sm-12 cat-block pe-5">
+                    <div class="row">
+                        <h1 class="mb-3 head1">Последние посты</h1>
+                        {% block posts %}
+                            {% include 'blog/index_page/latest_posts.html' %}
+                        {% endblock %}
+                    </div>
+                    <div class="row">
+                        <h1 class="mb-3 head1">Популярные посты</h1>
+                        {% block p_posts %}
+                            {% include 'blog/index_page/popular_posts.html' %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    <div class="row">
+                        <h1 class="mb-3 head1">Категории</h1>
+                        {% block categories_list %}
+                            {% include 'blog/index_page/category_list.html' %}
+                        {% endblock %}
+                        <hr>
+                        <h1 class="mb-3 head1">Ссылки</h1>
+                        {% block social_links %}
+                            {% include 'blog/index_page/social_links.html' %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="col-12 line"></div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

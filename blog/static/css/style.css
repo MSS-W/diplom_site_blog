@@ -1,0 +1,149 @@
+@font-face {
+    font-family: 'Century Gothic';
+    src: url("../fonts/century.ttf");
+}
+
+a {
+    text-decoration: none;
+}
+
+.sub-category {
+    padding-left: 30px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 0;
+    margin: 0;
+}
+
+.icons::before {
+    content: url(../svg/sun-fill.svg);
+    width: 24px;
+    height: 24px;
+    margin-right: 3px;
+    filter: invert(1);
+}
+
+.form-check-label {
+    content: url(../svg/moon-stars-fill.svg);
+    width: 12px;
+    height: 12px;
+    margin-left: 8px;
+    filter: invert(1);
+}
+
+.form-switch .form-check-input {
+    margin: 0;
+}
+
+.navbar-brand {
+    font-family: "Century Gothic", sans-serif;
+}
+
+.footer-border {
+    border-top: 1px solid #FFA500;
+}
+
+code:hover {
+    cursor: pointer;
+}
+
+.info {
+    padding-top: 5px;
+}
+
+.color {
+    background-color: #FFA500;
+}
+
+.dd-color {
+    background-color:#FF8C00;
+    color: #fff;
+}
+
+.dd-item-color {
+    background-color: #FF8C00;
+    color: #fff;
+}
+.dd-item-color:hover{
+    background-color: #FF8C00;
+    color: #fff;
+}
+
+.form-switch .form-check-input:checked {
+    background-color: #FF8C00;
+    border: 1px solid white;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255,1.0)'/></svg>");
+}
+
+.form-switch .form-check-input {
+    border: 1px solid #FF8C00;
+}
+
+.my-btn {
+    background: #FF8C00;
+    color:#fff;
+}
+
+.logo-icon {
+    filter: invert(1);
+    height: 24px;
+    width: 24px;
+}
+
+.lead {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.accordion-button-my {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: var(--bs-accordion-btn-padding-y) var(--bs-accordion-btn-padding-x);
+    font-size: 1rem;
+    color: var(--bs-accordion-btn-color);
+    text-align: left;
+    background-color: var(--bs-accordion-btn-bg);
+    border: 1px;
+    border-radius: 0;
+    overflow-anchor: none;
+    transition: var(--bs-accordion-transition);
+}
+
+.accordion-button-my::after {
+    flex-shrink: 0;
+    margin-left: auto;
+    content: "";
+    background-image: var(--bs-accordion-btn-icon);
+    background-repeat: no-repeat;
+    background-size: var(--bs-accordion-btn-icon-width);
+    transition: var(--bs-accordion-btn-icon-transition);
+}
+
+.link {
+    display: table;
+    width: 100%;
+}
+
+.link__title {
+    display: table-cell;
+    text-align: left;
+}
+
+.link__count {
+    display: table-cell;
+    text-align: right;
+}
+
+.head1 {
+    font-size: 28px;
+}
+
+.head2 {
+    font-size: 22px;
+}

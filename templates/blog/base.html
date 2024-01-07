@@ -1,0 +1,45 @@
+{% load static %}
+{% load analytical %}
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="dark" class="h-100">
+<head>
+    {% analytical_head_top %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "css/lightbox.min.css" %}" rel="stylesheet"/>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "css/dracula.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    {% analytical_head_bottom %}
+</head>
+<body class="d-flex flex-column h-100">
+{% analytical_body_top %}
+
+{% block header %}
+    {% include "blog/base/header.html" %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+    {% include "blog/base/footer.html" %}
+{% endblock %}
+
+<script src="{% static "js/lightbox-plus-jquery.min.js" %}"></script>
+<script src="{% static "js/bootstrap.bundle.js" %}"></script>
+<script src="{% static "js/highlight.js" %}"></script>
+<script src="{% static "js/languages/powershell.min.js" %}"></script>
+<script src="{% static "js/languages/python.min.js" %}"></script>
+<script src="{% static "js/languages/bash.min.js" %}"></script>
+<script src="{% static "js/languages/django.min.js" %}"></script>
+<script src="{% static "js/languages/json.min.js" %}"></script>
+<script src="{% static "js/languages/javascript.min.js" %}"></script>
+<script src="{% static "js/languages/css.min.js" %}"></script>
+<script src="{% static "js/script.js" %}"></script>
+<script>hljs.highlightAll();</script>
+{% analytical_body_bottom %}
+</body>
+</html>

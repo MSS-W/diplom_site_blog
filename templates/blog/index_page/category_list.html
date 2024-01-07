@@ -1,0 +1,45 @@
+{% block categories_list %}
+    {% load mptt_tags %}
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            {% recursetree categories_list %}
+                {% with count=node.post.count %}
+                    {% if node.is_root_node %}
+                        <h2 class="accordion-header" id="{{ node.pk }}">
+                            {% if node.get_children %}
+                                <div class="accordion-button collapsed border" type="button" data-bs-toggle="collapse"
+                                     data-bs-target="#{{ node.slug }}" aria-expanded="false"
+                                     aria-controls="{{ node.slug }}">
+                                    <a class="link">
+                                        <span class="link__title">{{ node.title }}</span>
+                                        {% if count %}<span class="link__count">{{ count }}</span>{% endif %}
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="accordion-button-my border">
+                                    <a href="{{ node.get_absolute_url }}" class="link">
+                                        <span class="link__title">{{ node.title }}</span>
+                                        {% if count %}<span class="link__count">{{ count }}</span>{% endif %}
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </h2>
+                    {% else %}
+                        <div class="accordion-body border sub-category bg-body-tertiary">
+                            <a href="{{ node.get_absolute_url }}" class="link">
+                                <span class="link__title">{{ node.title }}</span>
+                                {% if count %}<span class="link__count">{{ count }}</span>{% endif %}
+                            </a>
+                        </div>
+                    {% endif %}
+                    {% if not node.is_leaf_node %}
+                        <div id="{{ node.slug }}" class="accordion-collapse collapse"
+                             aria-labelledby="{{ node.pk }}" data-bs-parent="#accordionExample" style="">
+                            {{ children }}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            {% endrecursetree %}
+        </div>
+    </div>
+{% endblock %}

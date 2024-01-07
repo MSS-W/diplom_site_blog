@@ -1,0 +1,93 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        {% block page_head %}<h2>Профиль пользователя {{ user_profile }}</h2>{% endblock %}
+        <hr>
+        <div class="row">
+            <div class="col-xl-8 сol-sm-12">
+                {% if is_author %}
+                    {% block drafts %}
+                    {% endblock %}
+                    {% block public %}
+                    {% endblock %}
+                {% else %}
+                    {% if user_posts %}
+                        <h3 class="mb-3">Последние посты:</h3>
+                        {% for post in user_posts %}
+                            <div class="row">
+                                <h4 class="head2"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
+                                <div>
+                                    <p class="lead"><a
+                                            href="{{ post.category.get_absolute_url }}">{{ post.category }}</a>
+                                        | {{ post.publish | date:"d F Y" }} |
+                                        Просмотров: {{ post.views }}</p>
+                                </div>
+                            </div>
+                            <hr class="mt-0">
+                        {% endfor %}
+                        <div class="text-center mt-4">
+                            <a class="btn btn-primary my-btn mb-3"
+                               href="{% url 'user_app:user_posts' username=user_profile.username %}">Все
+                                посты {{ user_profile }}</a>
+                        </div>
+                    {% else %}
+                        <h3 class="mb-3">Постов нет</h3>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="col-xl-4 col-sm-12 border border-start border-0">
+                <h3 class="mb-3 text-center">Информация:</h3>
+                <div class="col-12 text-center">
+                    <img src="{{ user_profile.profile.user_avatar.url }}" alt="{{ user_profile }}" width="300"
+                         height="300" class="img-fluid"><br>
+                    {% for group in user_profile.groups.all %}
+                        <span class="badge border mt-3 lead">{{ group.name }}</span>
+                    {% endfor %}
+                </div>
+                <div class="col-12 ms-3 mt-4">
+                    <b>Имя пользователя:</b> {{ user_profile }}
+                    <hr class="mb-0">
+                    {% if user_profile.first_name %}
+                        <br>
+                        <b>Имя:</b> {{ user_profile.first_name }}
+                    {% endif %}
+                    {% if user_profile.last_name and user_profile.profile.show_last_name %}
+                        <br>
+                        <b>Фамилия:</b> {{ user_profile.last_name }}
+                    {% endif %}
+                    <br>
+                    <b>Пол:</b> {{ user_profile.profile.get_gender_display }}
+                    {% if user_profile.profile.dob %}
+                        <br>
+                        <b>Возраст:</b> {{ user_profile.profile.get_age }}
+                    {% endif %}
+                    <br>
+                    <b>На сайте:</b> {{ user_profile.profile.get_on_site }}
+                    <hr class="mb-0">
+                    {% if user_profile.profile.show_email %}
+                        <br>
+                        <b>Email:</b> {{ user_profile.email }}
+                    {% endif %}
+                    {% if user_profile.profile.show_telegram %}
+                        <br>
+                        <b>Ссылка на Telegram:</b> <a
+                            href="https://t.me/{{ user_profile.profile.get_telegram_username }}">@{{ user_profile.profile.get_telegram_username }}</a>
+                    {% endif %}
+                    {% if user_profile.profile.site_link %}
+                        <br>
+                        <b>Личный сайт:</b> {{ user_profile.profile.site_link }}
+                    {% endif %}
+                </div>
+                <div class="col-12 text-center mt-5">
+                    {% if user_profile == user %}
+                        <a class="btn btn-primary my-btn"
+                           href="{% url 'user_app:user_profile_settings' username=user_profile.username %}">Настройки
+                            профиля</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

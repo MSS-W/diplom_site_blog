@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="form-section container mt-3">
+        <h2>Удаление поста {{ object }}</h2>
+        <p>Вы действительно хотите удалить этот пост?</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button class="btn btn-secondary my-btn-danger me-2" type="submit">Да, удалить</button>
+            <a href="{% url 'user_app:user_profile' username=request.user.username %}" class="btn btn-primary my-btn-success">Отмена</a>
+        </form>
+    </div>
+{% endblock %}

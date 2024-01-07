@@ -1,0 +1,66 @@
+{% extends 'user_app/profile_page.html' %}
+
+{% block page_head %}
+    <h2>Профиль автора {{ user_profile }}</h2>
+{% endblock %}
+
+{% block drafts %}
+    {% if drafts %}
+        <h3 class="mb-3">Черновики:</h3>
+        {% for draft in drafts %}
+            <div class="row">
+                <div class="col-10">
+                    <h4 class="head2"><a href="{{ draft.get_absolute_url }}">{{ draft.title }}</a></h4>
+                    <div>
+                        <p class="lead"><a
+                                href="{{ draft.category.get_absolute_url }}">{{ draft.category }}</a>
+                            | {{ draft.publish | date:"d F Y" }} |
+                            Просмотров: {{ draft.views }} | {{ draft.get_status_display }}</p>
+                    </div>
+                </div>
+                <div class="col-2 text-center">
+                    <a href="{% url 'user_app:edit_post' pk=draft.pk %}"
+                       class="btn btn-sm btn-primary my-btn-success w-100 mb-1">Редактировать</a>
+                    <a href="{% url 'user_app:delete_post' pk=draft.pk %}"
+                       class="btn btn-sm btn-secondary my-btn-danger w-100 mb-1">Удалить</a>
+                </div>
+            </div>
+            <hr class="mt-0">
+        {% endfor %}
+    {% else %}
+        <h3 class="mb-3">Черновиков нет</h3>
+    {% endif %}
+{% endblock %}
+
+{% block public %}
+    {% if user_posts %}
+        <h3 class="mb-3">Последние посты:</h3>
+        {% for post in user_posts %}
+            <div class="row">
+                <div class="col-10">
+                    <h4 class="head2"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
+                    <div>
+                        <p class="lead"><a
+                                href="{{ post.category.get_absolute_url }}">{{ post.category }}</a>
+                            | {{ post.publish | date:"d F Y" }} |
+                            Просмотров: {{ post.views }} | {{ post.get_status_display }}</p>
+                    </div>
+                </div>
+                <div class="col-2 text-center">
+                    <a href="{% url 'user_app:edit_post' pk=post.pk %}"
+                       class="btn btn-sm btn-primary my-btn-success w-100 mb-1">Редактировать</a>
+                    <a href="{% url 'user_app:delete_post' pk=post.pk %}"
+                       class="btn btn-sm btn-secondary my-btn-danger w-100 mb-1">Удалить</a>
+                </div>
+            </div>
+            <hr class="mt-0">
+        {% endfor %}
+        <div class="text-center mt-4">
+            <a class="btn btn-primary my-btn mb-3"
+               href="{% url 'user_app:user_posts' username=user_profile.username %}">Все
+                посты {{ user_profile }}</a>
+        </div>
+    {% else %}
+        <h3 class="mb-3">Постов нет</h3>
+    {% endif %}
+{% endblock %}

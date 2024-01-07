@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="container mt-3 d-flex justify-content-center">
+        <div class="col-lg-8 col-sm-12">
+            <h2>Добавление поста</h2>
+            <form method="post" enctype="multipart/form-data" action="{% url 'user_app:add_post' %}">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success mt-3">Сохранить</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

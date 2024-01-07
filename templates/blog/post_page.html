@@ -1,0 +1,54 @@
+{% extends "blog/base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block description %}{{ post.short_body }}{% endblock %}
+
+{% block content %}
+    <section class="info">
+        <div class="container">
+            <h1>{{ post.title }}</h1>
+            <p class="lead"><a
+                    href="{{ post.category.get_absolute_url }}">{{ post.category }}</a>
+                | {{ post.author }} | {{ post.publish | date:"d F Y" }} | Просмотров: {{ post.views }}</p>
+            <p>{{ post.short_body | safe }}</p>
+            <hr>
+        </div>
+    </section>
+
+    <section class="post">
+        <div class="container post-block">
+            <div class="row">
+                <div class="col-lg-8 col-sm-12 pe-5">
+                    {{ post.full_body | safe }}
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                    <h2 class="mb-3 head2">Соседние посты</h2>
+                    {% if post.get_next_post %}
+                        <a href="{{ post.get_next_post.get_absolute_url }}"
+                           class="btn">{{ post.get_next_post.title }}</a>
+                    {% endif %}
+                    <a href="{{ post.get_absolute_url }}" class="btn disabled">{{ post.title }}</a>
+                    {% if post.get_previous_post %}
+                        <a href="{{ post.get_previous_post.get_absolute_url }}"
+                           class="btn">{{ post.get_previous_post.title }}</a>
+                    {% endif %}
+                    <hr>
+                    {% if post.file %}
+                        <h2 class="mb-3 head2">Дополнительные материалы</h2>
+                        <a href="{{ post.file.file.url }}" class="mb-1">Скачать материалы с сайта.</a>
+                    <hr>
+                    {% endif %}
+                    <h2 class="mb-3 head2">Теги</h2>
+                    {% for tag in post.tags.all %}
+                        <a href="{% url 'blog:tag_page' tag.slug %}"><span
+                                class="badge bg-secondary">{{ tag.name }}</span></a>
+                    {% endfor %}
+                    <hr>
+                    <h2 class="mb-3 head2">Ссылки</h2>
+                    {% block social_links %}
+                        {% include 'blog/index_page/social_links.html' %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

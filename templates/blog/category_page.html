@@ -1,0 +1,60 @@
+{% extends "blog/base.html" %}
+{% block title %}{{ category.title }}{% endblock %}
+{% block description %}{{ category.description }}{% endblock %}
+
+{% block content %}
+    <section class="info">
+        <div class="container">
+            <h1>{{ category.title }}</h1>
+            <p>{{ category.description | safe }}</p>
+            <hr>
+        </div>
+    </section>
+
+    <section class="posts">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-sm-12 cat-block">
+                    {% for post in posts %}
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-12 d-flex align-items-center">
+                                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid">
+                            </div>
+                            <div class="col-lg-8 col-sm-12">
+                                <h2 class="head2"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                                <div class="mb-3">
+                                    <p class="lead"><a
+                                            href="{{ post.category.get_absolute_url }}">{{ post.category }}</a>
+                                        | {{ post.author }} | {{ post.publish | date:"d F Y" }} |
+                                        Просмотров: {{ post.views }}</p>
+                                    {% for tag in post.tags.all %}
+                                        <a href="{% url 'blog:tag_page' tag.slug %}"><span
+                                                class="badge bg-secondary">{{ tag.name }}</span></a>
+                                    {% endfor %}
+                                </div>
+                                {{ post.short_body | safe }}
+                            </div>
+                        </div>
+                        <hr class="m-3">
+                    {% endfor %}
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    {% if categories_list %}
+                        <h2 class="mb-3">Подкатегории</h2>
+                        {% block categories_list %}
+                            {% include 'blog/index_page/category_list.html' %}
+                        {% endblock %}
+                        <hr>
+                    {% endif %}
+                    <h2 class="mb-3">Ссылки</h2>
+                    {% block social_links %}
+                        {% include 'blog/index_page/social_links.html' %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="col-12">
+                {% include "blog/modules/pagination.html" %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'user_app/user_posts_page.html' %}
+
+{% block buttons %}
+    <a href="{% url 'user_app:edit_post' pk=post.pk %}" class="btn btn-sm btn-primary my-btn-success w-100 me-1">Редактировать</a>
+    <a href="{% url 'user_app:delete_post' pk=post.pk %}" class="btn btn-sm btn-secondary my-btn-danger w-100 me-1">Удалить</a>
+{% endblock %}
+
+{% block status %}
+    | {{ post.get_status_display }}
+{% endblock %}

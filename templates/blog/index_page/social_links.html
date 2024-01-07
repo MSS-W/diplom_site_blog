@@ -1,0 +1,12 @@
+{% block social_links %}
+    <ul class="nav nav-pills flex-column">
+        {% for soc_link in social_links %}
+            <li class="nav-item">
+            <div class="d-flex align-items-center ps-3">
+                <img src="{{ soc_link.image.url }}" alt="{{ soc_link.title }}" class="img-fluid" width="32" height="32">
+                <a href="{{ soc_link.link }}" class="nav-link">{{ soc_link.title }}</a>
+            </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
