@@ -53,6 +53,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'blog.context_processors.get_social_links',
+                'blog.context_processors.get_header_categories',
                 'blog.context_processors.get_search_form',
             ],
         },
@@ -88,7 +89,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = 'Asia/Novosibirsk'
 
 USE_I18N = True
 
@@ -127,8 +128,8 @@ JAZZMIN_UI_TWEAKS = {
     "actions_sticky_top": True,
 }
 JAZZMIN_SETTINGS = {
-    "site_title": "Сайт-Блог",
-    "site_brand": "Сайт-Блог",
+    "site_title": "Гастро Блог",
+    "site_brand": "Гастро Блог",
 }
 
 # CKEditor 5

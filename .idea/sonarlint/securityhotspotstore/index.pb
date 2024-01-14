@@ -39,3 +39,21 @@ L
 blog/static/svg/sun-fill.svg,a\0\a05bdca1274ae4ed654157d66478298855f45802
 I
 blog/static/css/style.css,3\f\3f7638eb898860911702aa2013106507c26b173c
+e
+5blog/static/django_ckeditor_5/src/override-django.css,5\2\522d9aad0e6b3c96d9b5660ab82b287457728ae8
+R
+"blog/static/js/bootstrap.bundle.js,1\0\1075caf0a7aec1bcc3c8e1625df73ec61156355d
+=
+blog/forms.py,8\d\8dc45ed33dbcc8b65458ba016179df9d26f67b91
+B
+static/favicon.svg,5\2\52cefbd286843b60a7a6ccd61faf430885a46567
+E
+site_blog/settings.py,2\3\23572ae7b5a05e251d7e642134b44d388296b80b
+A
+site_blog/urls.py,0\4\04e6ca339ca4322beaf831a80da8af94ffbf236d
+]
+-blog/static/django_ckeditor_5/dist/styles.css,b\7\b7bef0ee656a6f165aabafba35ef8af5d452b523
+=
+blog/views.py,e\7\e7a8c955252fc1494be19edcdaa6f927cd79a1a7
+J
+blog/context_processors.py,6\c\6c340208a9c88707f6e327e1edcb7d7ee54a2ac7

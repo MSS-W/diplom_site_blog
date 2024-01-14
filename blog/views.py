@@ -107,12 +107,9 @@ class SearchPageView(TemplateView):
         form = forms.SearchForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data['query']
+            results = models.PostModel.objects.filter(full_body__icontains=query)
 
-            similarity = (TrigramSimilarity('full_body', query) +
-                          TrigramSimilarity('title', query))
-            results = models.PostModel.post_manager.annotate(
-                similarity=similarity
-            ).filter(similarity__gt=0.1).order_by('-similarity')
+            models.PostModel.objects.filter(full_body__icontains=query)
 
             paginator = Paginator(results, 10)
             page_number = request.GET.get('page', 1)
