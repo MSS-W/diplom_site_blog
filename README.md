@@ -2,7 +2,7 @@
 
 git clone
 
-cd site-blog/
+cd diplom_site_blog
 
 python3 -m venv .env
 
